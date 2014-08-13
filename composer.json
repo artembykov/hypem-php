@@ -1,0 +1,27 @@
+{
+  "name": "artemio/hypem",
+  "description": "A wrapper for the hypem.com public API",
+  "version": "0.0.1",
+  "keywords": ["hypem","hypemachine"],
+  "homepage": "https://github.com/artemio/php-hypem.git",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Artem Bykov",
+      "email": "artemio91@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "php-curl-class/php-curl-class": "dev-master"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*",
+    "raveren/kint": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hypem\\": "src/Hypem"
+    }
+  }
+}

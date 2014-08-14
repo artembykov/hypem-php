@@ -10,7 +10,6 @@ class Request
 
     public function __construct()
     {
-        // TODO: use one Curl object for all requests
         $this->curl = new \Curl\Curl();
 
         $this->curl->success(function ($instance) {

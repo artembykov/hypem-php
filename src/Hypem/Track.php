@@ -3,6 +3,8 @@ namespace Hypem;
 
 class Track
 {
+    use SingleRequest;
+
     /**
     * @var string  $mediaid          Track ID
     * @var string  $artist           Artist name
@@ -47,8 +49,6 @@ class Track
     private static $link_template   = '/serve/source/{{mediaid}}/{{key}}';
     private static $key_regex       = '/<script.+?id="displayList-data">\s*(.+?)\s*<\/script>/';
 
-    private $request;
-
     public function __construct($props = [])
     {
         if (is_string($props)) {
@@ -63,19 +63,11 @@ class Track
         }
     }
 
-    private function getRequest()
-    {
-        if (!isset($this->request)) {
-            $this->request = new Request();
-        }
-        return $this->request;
-    }
-
     private function getProperties()
     {
         $path = strtr(self::$props_template, ['{{mediaid}}' => $this->mediaid]);
         $response = $this->getRequest()->getJson(Request::BASE_URI . $path);
-        return $response[0];
+        return empty($response) ? [] : $response[0];
     }
 
     private function getKey()

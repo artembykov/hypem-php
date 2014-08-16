@@ -1,0 +1,10 @@
+;;Path;Query params;Cookie;Response type;
+Playlist;Array of tracks;/ playlist / popular / <string> / json / <page>;;;json;
+;;/ playlist / latest / <string> / json / <page>;
+;;/ playlist / artist / <string> / json / <page>;
+;;/ playlist / tags / <string> / json / <page>;
+;;/ playlist / blog / <blog_id> / json / <page>;
+;;/ playlist / search / <string> / json / <page>;
+Track;Metadata;/ playlist / track / <track_id> / json;;;json;
+;Key;/ track / <track_id>;ax=1;;html;
+;MP3 link;/ serve / source / <track_id> / <key>;;AUTH;json;

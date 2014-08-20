@@ -3,8 +3,6 @@ namespace Hypem;
 
 class Track
 {
-    use SingleRequest;
-
     /**
     * @var string  $mediaid          Track ID
     * @var string  $artist           Artist name
@@ -44,10 +42,7 @@ class Track
     public $tags;
     public $itunes_link;
 
-    private static $props_template  = '/playlist/track/{{mediaid}}/json';
-    private static $key_template    = '/track/{{mediaid}}?ax=1';
-    private static $link_template   = '/serve/source/{{mediaid}}/{{key}}';
-    private static $key_regex       = '/<script.+?id="displayList-data">\s*(.+?)\s*<\/script>/';
+    private static $path_template  = '/playlist/track/{{mediaid}}/json';
 
     public function __construct($props = [])
     {
@@ -65,37 +60,8 @@ class Track
 
     private function getProperties()
     {
-        $path = strtr(self::$props_template, ['{{mediaid}}' => $this->mediaid]);
-        $response = $this->getRequest()->getJson(Request::BASE_URI . $path);
-        return empty($response) ? [] : $response[0];
-    }
-
-    private function getKey()
-    {
-        $path = strtr(self::$key_template, ['{{mediaid}}' => $this->mediaid]);
-        $response = $this->getRequest()->get(Request::BASE_URI . $path);
-
-        preg_match(self::$key_regex, $response, $match);
-        $data = json_decode($match[1], true);
-
-        return $data['tracks'][0]['key'];
-    }
-
-    public function get()
-    {
-        $path = strtr(self::$link_template, [
-            '{{mediaid}}' => $this->mediaid,
-            '{{key}}'     => $this->getKey()
-        ]);
-
-        $request = $this->getRequest();
-
-        // get json with remote song url
-        $response = $request->getJson(Request::BASE_URI . $path);
-
-        // send request and get response location header with real url of mp3
-        $request->get($response['url']);
-
-        return $request->getResponseHeader('Location');
+        $path = strtr(self::$path_template, ['{{mediaid}}' => $this->mediaid]);
+        $track = (new Request)->getJson($path);
+        return empty($track) ? [] : $track[0];
     }
 }

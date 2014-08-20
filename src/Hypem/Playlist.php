@@ -3,8 +3,6 @@ namespace Hypem;
 
 class Playlist
 {
-    use SingleRequest;
-
     const TYPE_LATEST   = 'latest';
     const TYPE_POPULAR  = 'popular';
     const TYPE_ARTIST   = 'artist';
@@ -94,12 +92,12 @@ class Playlist
             '{{page}}'    => $page
         ]);
 
-        $response = $this->getRequest()->getJson(Request::BASE_URI . $path);
+        $tracks = (new Request)->getJson($path);
 
-        foreach ($response as &$track) {
-            $track = new Track($track);
+        foreach ($tracks as &$data) {
+            $data = new Track($data);
         }
 
-        return $response;
+        return $tracks;
     }
 }

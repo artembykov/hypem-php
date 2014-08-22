@@ -3,7 +3,7 @@ namespace Hypem;
 
 class Request
 {
-    const BASE_URI = 'http://api.hypem.com';
+    const BASE_URI = 'http://hypem.com';
 
     private $curl;
 
@@ -14,14 +14,11 @@ class Request
 
     public function get($path)
     {
-        $this->curl->get(self::BASE_URI . $path);
-        return $this->curl->raw_response;
+        return $this->curl->get(self::BASE_URI . $path);
     }
 
     public function getJson($path)
     {
-        $response = json_decode($this->get($path), true);
-        unset($response['version']);
-        return $response;
+        return json_decode($this->get($path), true);
     }
 }

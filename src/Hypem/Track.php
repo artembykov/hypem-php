@@ -42,8 +42,6 @@ class Track
     public $tags;
     public $itunes_link;
 
-    private static $path_template  = '/playlist/track/{{mediaid}}/json';
-
     public function __construct($props = [])
     {
         if (is_string($props)) {
@@ -51,7 +49,7 @@ class Track
             $props = $this->getProperties();
         }
 
-        foreach ($props as $k => $v) {
+        foreach ((array)$props as $k => $v) {
             if (property_exists($this, $k)) {
                 $this->$k = $v;
             }
@@ -60,8 +58,7 @@ class Track
 
     private function getProperties()
     {
-        $path = strtr(self::$path_template, ['{{mediaid}}' => $this->mediaid]);
-        $track = (new Request)->getJson($path);
-        return empty($track) ? [] : $track[0];
+        $data = Playlist::track($this->mediaid)->getData(1);
+        return array_shift($data);
     }
 }

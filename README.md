@@ -28,9 +28,13 @@ $search  = Playlist::search('Woodkid Iron')->get();
 $track = new Track('264xq');
 
 // get tracks of specific user
-$user       = new User('username');
-$favorites  = $user->favorites(5); // provide page number
-$history    = $user->history();
+$user            = new User('username');
+$feed            = $user->feed();
+$favorites       = $user->favorites(5); // provide page number
+$history         = $user->history();
+$obsessed        = $user->obsessed();
+$friendFavorites = $user->friendFavorites();
+$friendObsessed  = $user->friendObsessed(2);
 ```
 
 ###Available filters for latest playlist

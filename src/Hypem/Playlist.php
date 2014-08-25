@@ -5,13 +5,19 @@ class Playlist
 {
     const PATH_TEMPLATE = '/playlist/{{type}}/{{filter}}/json/{{page}}';
 
-    const TYPE_LATEST   = 'latest';
-    const TYPE_POPULAR  = 'popular';
-    const TYPE_ARTIST   = 'artist';
-    const TYPE_BLOG     = 'blog';
-    const TYPE_TAGS     = 'tags';
-    const TYPE_SEARCH   = 'search';
-    const TYPE_TRACK    = 'track';
+    const TYPE_LATEST           = 'latest';
+    const TYPE_POPULAR          = 'popular';
+    const TYPE_ARTIST           = 'artist';
+    const TYPE_BLOG             = 'blog';
+    const TYPE_TAGS             = 'tags';
+    const TYPE_SEARCH           = 'search';
+    const TYPE_TRACK            = 'track';
+    const TYPE_FEED             = 'feed';
+    const TYPE_LOVED            = 'loved';
+    const TYPE_HISTORY          = 'history';
+    const TYPE_OBSESSED         = 'obsessed';
+    const TYPE_PEOPLE           = 'people';
+    const TYPE_PEOPLE_OBSESSED  = 'people_obsessed';
 
     const FILTER_ALL        = 'all';
     const FILTER_FRESH      = 'fresh';
@@ -91,9 +97,34 @@ class Playlist
         return new self(self::TYPE_TRACK, $id);
     }
 
-    public static function loved(User $user)
+    public static function feed($name)
     {
-        return new self(self::);
+        return new self(self::TYPE_FEED, $name);
+    }
+
+    public static function loved($name)
+    {
+        return new self(self::TYPE_LOVED, $name);
+    }
+
+    public static function history($name)
+    {
+        return new self(self::TYPE_HISTORY, $name);
+    }
+
+    public static function obsessed($name)
+    {
+        return new self(self::TYPE_OBSESSED, $name);
+    }
+
+    public static function people($name)
+    {
+        return new self(self::TYPE_PEOPLE, $name);
+    }
+
+    public static function people_obsessed($name)
+    {
+        return new self(self::TYPE_PEOPLE_OBSESSED, $name);
     }
 
     public function getData($page)

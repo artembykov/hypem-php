@@ -3,23 +3,40 @@ namespace Hypem;
 
 class User
 {
-    public function feed()
+    private $name;
+
+    public function __construct($name)
     {
-        //playlist
+        $this->name = $name;
     }
 
-    public function favorites()
+    public function feed($page = 1)
     {
-        //playlist
+        return Playlist::feed($this->name)->get($page);
     }
 
-    public function history()
+    public function favorites($page = 1)
     {
-        //playlist
+        return Playlist::loved($this->name)->get($page);
     }
 
-    public function obsessed()
+    public function history($page = 1)
     {
-        //playlist
+        return Playlist::history($this->name)->get($page);
+    }
+
+    public function obsessed($page = 1)
+    {
+        return Playlist::obsessed($this->name)->get($page);
+    }
+
+    public function friendFavorites($page = 1)
+    {
+        return Playlist::people($this->name)->get($page);
+    }
+
+    public function friendObsessed($page = 1)
+    {
+        return Playlist::people_obsessed($this->name)->get($page);
     }
 }

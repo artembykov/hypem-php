@@ -18,7 +18,7 @@ use \Hypem\User as User;
 
 // available Playlist static methods
 $latest  = Playlist::latest('noremix')->get();
-$popular = Playlist::popular()->get(3);
+$popular = Playlist::popular()->get(3); // provide page number
 $artist  = Playlist::artist('Placebo')->get();
 $blog    = Playlist::blog(16746)->get(); // "Cruel Rythm" blog_id
 $tags    = Playlist::tags('electro house')->get();
@@ -29,7 +29,7 @@ $track = new Track('264xq');
 
 // get tracks of specific user
 $user       = new User('username');
-$favorites  = $user->favorites(5);
+$favorites  = $user->favorites(5); // provide page number
 $history    = $user->history();
 ```
 
@@ -39,7 +39,7 @@ $history    = $user->history();
 * `remix`
 * `noremix`
 
-###Available filters for latest playlist
+###Available filters for popular playlist
 * `now`
 * `lastweek`
 * `remix`

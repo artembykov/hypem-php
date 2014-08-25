@@ -38,13 +38,13 @@ $friendObsessed  = $user->friendObsessed(2);
 ```
 
 ###Available filters for latest playlist
-* `all`
+* `all` (default)
 * `fresh`
 * `remix`
 * `noremix`
 
 ###Available filters for popular playlist
-* `now`
+* `now` (default)
 * `lastweek`
 * `remix`
 * `noremix`

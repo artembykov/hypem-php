@@ -36,11 +36,6 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
         return __NAMESPACE__ . '\\' . $name;
     }
 
-    protected static function createPlaylistInstance($type, $filter)
-    {
-        return Playlist::$type($filter);
-    }
-
     protected static function getLatestFilters()
     {
         return [
@@ -119,7 +114,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionIsRaisedForInvalidLatestFilter()
     {
-        self::createPlaylistInstance('latest', null);
+        Playlist::latest(null);
     }
 
     /**
@@ -129,7 +124,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionIsRaisedForInvalidPopularFilter()
     {
-        self::createPlaylistInstance('popular', null);
+        Playlist::popular(null);
     }
 
     /**
@@ -139,7 +134,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testObjectCanBeConstructedForValidLatestFilter($filter)
     {
-        $playlist = self::createPlaylistInstance('latest', $filter);
+        $playlist = Playlist::latest($filter);
         $this->assertInstanceOf(self::getFullClassName('Playlist'), $playlist);
     }
 
@@ -150,7 +145,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testObjectCanBeConstructedForValidPopularFilter($filter)
     {
-        $playlist = self::createPlaylistInstance('popular', $filter);
+        $playlist = Playlist::popular($filter);
         $this->assertInstanceOf(self::getFullClassName('Playlist'), $playlist);
     }
 
@@ -171,7 +166,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testObjectCanBeConstructed($type, $filter)
     {
-        $playlist = self::createPlaylistInstance($type, $filter);
+        $playlist = Playlist::$type($filter);
         $this->assertInstanceOf(self::getFullClassName('Playlist'), $playlist);
     }
 
@@ -181,7 +176,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testPageCanBeSet($type, $filter)
     {
-        $playlist = self::createPlaylistInstance($type, $filter);
+        $playlist = Playlist::$type($filter);
         $playlist->setPage(1);
         $this->assertAttributeNotEmpty('page', $playlist);
     }
@@ -192,7 +187,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildPath($type, $filter)
     {
-        $playlist = self::createPlaylistInstance($type, $filter);
+        $playlist = Playlist::$type($filter);
         $playlist->setPage(1);
         $path = $playlist->buildPath();
 
@@ -216,7 +211,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetData($type, $filter)
     {
-        $playlist = self::createPlaylistInstance($type, $filter);
+        $playlist = Playlist::$type($filter);
         $data = $playlist->getData(1);
 
         // data is fetched as an array
@@ -233,7 +228,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet($type, $filter)
     {
-        $playlist = self::createPlaylistInstance($type, $filter);
+        $playlist = Playlist::$type($filter);
         $tracks = $playlist->get(1);
 
         // tracks are returned as an array

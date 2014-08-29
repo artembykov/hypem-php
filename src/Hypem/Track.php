@@ -49,7 +49,7 @@ class Track
             $props = $this->getProperties();
         }
 
-        foreach ((array)$props as $k => $v) {
+        foreach ($props as $k => $v) {
             if (property_exists($this, $k)) {
                 $this->$k = $v;
             }
@@ -59,6 +59,7 @@ class Track
     private function getProperties()
     {
         $data = Playlist::track($this->mediaid)->getData(1);
-        return array_shift($data);
+        return empty($data) ? [] : $data[0];
+        //return array_shift($data);
     }
 }

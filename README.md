@@ -3,12 +3,10 @@ php-hypem
 
 A PHP wrapper for the hypem.com public API
 
-Composer
---
+##Composer
 `$ composer require artemio/hypem`
 
-Quick Start and Examples
---
+##Quick Start and Examples
 ```php
 require '../vendor/autoload.php';
 

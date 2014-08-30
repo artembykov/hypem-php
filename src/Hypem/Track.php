@@ -56,7 +56,7 @@ class Track
         }
     }
 
-    private function getProperties()
+    public function getProperties()
     {
         $data = Playlist::track($this->mediaid)->getData(1);
         return empty($data) ? [] : $data[0];

@@ -42,17 +42,20 @@ class Track
     public $tags;
     public $itunes_link;
 
-    public function __construct($props = [])
+    public function __construct($properties)
     {
-        if (is_string($props)) {
-            $this->mediaid = $props;
-            $props = $this->getProperties();
-        }
+        switch (gettype($properties)) {
+            case 'string':
+                $this->mediaid = $properties;
+                $properties = $this->getProperties();
+                //no break => fall into 'array' case and set properties
 
-        foreach ($props as $k => $v) {
-            if (property_exists($this, $k)) {
-                $this->$k = $v;
-            }
+            case 'array':
+                $this->setProperties($properties);
+                break;
+
+            default:
+                throw new \InvalidArgumentException('Wrong parameter passed');
         }
     }
 
@@ -60,6 +63,14 @@ class Track
     {
         $data = Playlist::track($this->mediaid)->getData(1);
         return empty($data) ? [] : $data[0];
-        //return array_shift($data);
+    }
+
+    public function setProperties($properties)
+    {
+        foreach ($properties as $k => $v) {
+            if (property_exists($this, $k)) {
+                $this->$k = $v;
+            }
+        }
     }
 }

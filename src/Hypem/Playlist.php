@@ -127,6 +127,21 @@ class Playlist
         return new self(self::TYPE_PEOPLE_OBSESSED, $name);
     }
 
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    public function getPage()
+    {
+        return $this->page;
+    }
+
     public function setPage($page)
     {
         $this->page = $page;

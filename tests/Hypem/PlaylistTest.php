@@ -49,7 +49,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers            ::latest
-     * @covers            ::__construct
+     * @uses              ::__construct
      * @expectedException \InvalidArgumentException
      */
     public function testExceptionIsRaisedForInvalidLatestFilter()
@@ -59,7 +59,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers            ::popular
-     * @covers            ::__construct
+     * @uses              ::__construct
      * @expectedException \InvalidArgumentException
      */
     public function testExceptionIsRaisedForInvalidPopularFilter()
@@ -69,7 +69,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers       ::latest
-     * @covers       ::__construct
+     * @uses         ::__construct
      * @dataProvider latestFiltersProvider
      */
     public function testObjectCanBeConstructedForValidLatestFilter($filter)
@@ -80,7 +80,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers       ::popular
-     * @covers       ::__construct
+     * @uses         ::__construct
      * @dataProvider popularFiltersProvider
      */
     public function testObjectCanBeConstructedForValidPopularFilter($filter)
@@ -101,7 +101,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
      * @covers       ::obsessed
      * @covers       ::people
      * @covers       ::people_obsessed
-     * @covers       ::__construct
+     * @uses         ::__construct
      * @dataProvider instancesProvider
      */
     public function testObjectCanBeConstructed($instance)
@@ -142,7 +142,6 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers       ::getData
-     * @uses         Request
      * @uses         Request::getJson
      * @dataProvider instancesProvider
      */
@@ -150,7 +149,7 @@ class PlaylistTest extends \PHPUnit_Framework_TestCase
     {
         $data = $instance->getData(1);
 
-        // data is fetched as an array
+        // data is fetched as array
         $this->assertInternalType('array', $data);
 
         // data does not contain version key

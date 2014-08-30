@@ -48,14 +48,19 @@ class Track
             case 'string':
                 $this->mediaid = $properties;
                 $properties = $this->getProperties();
-                //no break => fall into 'array' case and set properties
+                break;
 
             case 'array':
-                $this->setProperties($properties);
                 break;
 
             default:
                 throw new \InvalidArgumentException('Wrong parameter passed');
+        }
+
+        foreach ($properties as $k => $v) {
+            if (property_exists($this, $k)) {
+                $this->$k = $v;
+            }
         }
     }
 
@@ -63,14 +68,5 @@ class Track
     {
         $data = Playlist::track($this->mediaid)->getData(1);
         return empty($data) ? [] : $data[0];
-    }
-
-    public function setProperties($properties)
-    {
-        foreach ($properties as $k => $v) {
-            if (property_exists($this, $k)) {
-                $this->$k = $v;
-            }
-        }
     }
 }

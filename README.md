@@ -1,6 +1,8 @@
 php-hypem
 =========
 
+[![Build Status](https://travis-ci.org/artemio/php-hypem.svg?branch=master)](https://travis-ci.org/artemio/php-hypem)
+
 A PHP wrapper for the hypem.com public API
 
 ##Composer

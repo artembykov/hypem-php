@@ -3,7 +3,7 @@
   "description": "A wrapper for the hypem.com public API",
   "version": "0.0.1",
   "keywords": ["hypem","hypemachine"],
-  "homepage": "https://github.com/artemio/php-hypem.git",
+  "homepage": "https://github.com/artemio/hypem.git",
   "license": "MIT",
   "authors": [
     {

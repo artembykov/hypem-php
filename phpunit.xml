@@ -12,7 +12,7 @@
          syntaxCheck="false">
     <testsuites>
         <testsuite name="Hypem Test Suite">
-            <directory suffix=".php">./tests/Hypem/</directory>
+            <directory suffix=".php">./test/Hypem/</directory>
         </testsuite>
     </testsuites>
 </phpunit>

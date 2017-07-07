@@ -5,10 +5,10 @@ hypem-php
 
 A PHP wrapper for the hypem.com public API
 
-##Composer
+## Composer
 `$ composer require artemio/hypem`
 
-##Quick Start and Examples
+## Quick Start and Examples
 ```php
 require '../vendor/autoload.php';
 
@@ -37,13 +37,13 @@ $friendFavorites = $user->friendFavorites();
 $friendObsessed  = $user->friendObsessed(2);
 ```
 
-###Available filters for latest playlist
+### Available filters for latest playlist
 * `all` (default)
 * `fresh`
 * `remix`
 * `noremix`
 
-###Available filters for popular playlist
+### Available filters for popular playlist
 * `now` (default)
 * `lastweek`
 * `remix`
